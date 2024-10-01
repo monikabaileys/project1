@@ -1,7 +1,8 @@
 
 
 
-
+let foodItems = [];
+let foodCategories = ['Breakfast', 'Lunch', 'Dinner']
 let currentCategory = '';
 let breakfastRecipes = ['Pancakes', 'Omelette', 'Waffles'];
 let lunchRecipes = ['Sloppy Joes', 'Quesadilla', 'Chicken Curry'];
@@ -18,7 +19,7 @@ let recipes = {
   'Ramen': 'Ramen Recipe:\n- Ramen noodles\n- Broth\n- Egg, veggies\n- Cook in broth and serve'
 };
 let currentRecipe = '';
-let foodImages = {};
+let foodImages = [];
 let boardImage;
 
 function preload() {
@@ -29,7 +30,7 @@ function preload() {
   foodImages['Sloppy Joes'] = loadImage('sleepyj.png');
   foodImages['Quesadilla'] = loadImage('cheeseq.png');
   foodImages['Chicken Curry'] = loadImage('curry.png');
-  foodImages['Dumplings'] = loadImage('dumplings.png');
+  foodImages['Dumplings'] = loadImage('dumpling.png');
   foodImages['Mac and Cheese'] = loadImage('mac.png');
   foodImages['Ramen'] = loadImage('ramen.png');
   boardImage = loadImage('board.png');  // Load the board and knife image
@@ -38,15 +39,16 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   textAlign(CENTER, CENTER);
-  background(255, 244, 213);  // milky yellow background
-  drawBoard();
-  drawCategories();
-  textSize(32);
-  text("Monika's Recipes", width / 2, 50);
+ 
 }
 
 function draw() {
-
+   background(255, 244, 213);  // milky yellow background
+  
+  textSize(32);
+  text("Monika's Recipes", width / 2, 50);
+drawBoard();
+  drawCategories();
   if (currentCategory !== '') {
     displayFoodImages(currentCategory);
   }
@@ -62,22 +64,23 @@ function draw() {
 
 function drawBoard() {
 
-  image(boardImage, 50, 150, 300, 400);  
+  image(boardImage, 50, 150, 300, 400); 
+  } 
 
 function drawCategories() {
   
   fill(200);
-  for (let i = 0; i < categories.length; i++) {
+  for (let i = 0; i < foodCategories.length; i++) {
     rect(width - 350, 150 + i * 150, 300, 100); 
     fill(0);
     textSize(24);
-    text(categories[i], width - 200, 200 + i * 150);  
+    text(foodCategories[i], width - 200, 200 + i * 150);  
     fill(200);  // Reset fill for the next box
   }
 }
 
 function displayFoodImages(category) {
-  let foodItems = [];
+ 
   if (category === 'Breakfast') foodItems = breakfastRecipes;
   else if (category === 'Lunch') foodItems = lunchRecipes;
   else if (category === 'Dinner') foodItems = dinnerRecipes;
@@ -96,7 +99,7 @@ function mousePressed() {
     currentRecipe = '';  
   }
 
-  let foodItems = [];
+ 
   if (currentCategory === 'Breakfast') foodItems = breakfastRecipes;
   if (currentCategory === 'Lunch') foodItems = lunchRecipes;
   if (currentCategory === 'Dinner') foodItems = dinnerRecipes;
